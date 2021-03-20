@@ -34,7 +34,7 @@ router.get('/:id', catchAsync(async(req, res) => {
             path: 'author'
         }
     }).populate('author');
- //  console.log(campground);
+ console.log(campground);
    if(!campground) {
        req.flash('error', 'Cannot find that campground!!');
        return res.redirect('/campgrounds');
