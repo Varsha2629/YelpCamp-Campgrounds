@@ -22,7 +22,8 @@ await Campground.deleteMany({});
    for(let i = 0; i < 10; i++) {
        const random20 = Math.floor(Math.random() * 20);
        const price = Math.floor(Math.random() * 10) + 5;
-          const camp = new Campground({            
+          const camp = new Campground({ 
+           author: '6053770fd5f4d2461cb66353',            
            location: `${cities[random20].city}, ${cities[random20].state}`,
            title: `${sample(descriptors)} ${sample(places)}`,
            image: 'https://source.unsplash.com/collection/483251',
