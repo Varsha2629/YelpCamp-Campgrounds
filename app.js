@@ -1,3 +1,10 @@
+if(process.env.NODE_ENV !=="production") {
+    require('dotenv').config();
+}
+
+console.log(process.env.SECRET)
+console.log(process.env.API_KEY)
+
 const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
@@ -63,7 +70,7 @@ app.use((req, res, next) => {
     res.locals.currentUser = req.user;
     res.locals.success = req.flash('success');
     res.locals.error = req.flash('error');
-    next();
+    next()
 })
 
 app.use('/', userRoutes);
@@ -85,6 +92,7 @@ app.use((err, req, res, next) => {
      res.status(statusCode).render('error', { err });
      //res.send('Oh boy, something went wrong!!')
 })
+
 app.listen(3000, ()=> {
-    console.log('Serving on port 3000')
+    console.log('Serving on port 3000');
 }) 

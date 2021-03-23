@@ -4,6 +4,9 @@
 <div class="row">
   <div class="col-6">
     <div class="card mb-3"> 
+        <% for (let img of campground.images) { %>
+            <img src="<%= img.url%>" class="card-img-top" alt="...">    
+        <% } %>
         <img  src="<%=campground.image%>" class="card-img-top" alt="...">
             <div class="card-body">
                 <h5 class="card-title"><%= campground.title %></h5>
@@ -60,7 +63,7 @@
     </form> 
     <% } %>
     <% for(let review of campground.reviews) { %>
-    <div class=" card mb=3">
+    <div class="card mb=3">
         <div class="card-body">
             <!-- <h5 class="card-title">Rating: <%= review.rating %></h5> -->
             <h5 class="card-title"> <%= review.author.username %></h5>
@@ -78,5 +81,3 @@
     <% } %>
  </div>
 </div>
-   
-
