@@ -26,9 +26,18 @@ await Campground.deleteMany({});
            author: '6053770fd5f4d2461cb66353',            
            location: `${cities[random20].city}, ${cities[random20].state}`,
            title: `${sample(descriptors)} ${sample(places)}`,
-           image: 'https://source.unsplash.com/collection/483251',
            description: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit.Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.',
-           price
+           price,
+           images : [
+            {
+              url: 'https://res.cloudinary.com/yelpcamp-images/image/upload/v1616549051/YelpCamp/y4dg96vqce0nqsjttfjo.jpg',
+              filename: 'YelpCamp/y4dg96vqce0nqsjttfjo'
+            },
+            {
+              url: 'https://res.cloudinary.com/yelpcamp-images/image/upload/v1616549051/YelpCamp/elx2dhyxmdyzen3wu1ru.jpg',
+              filename: 'YelpCamp/elx2dhyxmdyzen3wu1ru'
+            }
+          ],
        })
        await camp.save();
    }

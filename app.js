@@ -66,7 +66,7 @@ passport.serializeUser(User.serializeUser());                               //st
 passport.deserializeUser(User.deserializeUser());                         //how do you get a user out of session
 
 app.use((req, res, next) => {
-    console.log(req.session);
+    //console.log(req.session);
     res.locals.currentUser = req.user;
     res.locals.success = req.flash('success');
     res.locals.error = req.flash('error');
@@ -93,6 +93,6 @@ app.use((err, req, res, next) => {
      //res.send('Oh boy, something went wrong!!')
 })
 
-app.listen(3000, ()=> {
+app.listen(3000, () => {
     console.log('Serving on port 3000');
 }) 
