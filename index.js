@@ -11,7 +11,7 @@ app.use((req, res, next) => {
     next();
 })
 app.use('/dogs', (req, res, next) => {
-    console.log("I Love Dogs")
+   // console.log("I Love Dogs")
     next();
 })
 const verifyPassword = ((req, res, next) => {       // Protecting Specific Routes

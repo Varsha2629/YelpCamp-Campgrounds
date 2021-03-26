@@ -22,6 +22,7 @@ const campgroundsRoutes = require('./routes/campgrounds');
 const reviewsRoutes = require('./routes/reviews');
 const userRoutes = require('./routes/users'); 
 
+
 mongoose.connect('mongodb://localhost:27017/yelp-camp', {
     useNewUrlParser: true,
     useFindAndModify:false,
@@ -70,7 +71,7 @@ app.use((req, res, next) => {
     res.locals.currentUser = req.user;
     res.locals.success = req.flash('success');
     res.locals.error = req.flash('error');
-    next()
+    next();
 })
 
 app.use('/', userRoutes);
@@ -94,5 +95,5 @@ app.use((err, req, res, next) => {
 })
 
 app.listen(3000, () => {
-    console.log('Serving on port 3000');
+   console.log('Serving on port 3000');
 }) 
