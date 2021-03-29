@@ -2,9 +2,6 @@ if(process.env.NODE_ENV !=="production") {
     require('dotenv').config();
 }
 
-console.log(process.env.SECRET)
-console.log(process.env.API_KEY)
-
 const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
@@ -28,6 +25,7 @@ mongoose.connect('mongodb://localhost:27017/yelp-camp', {
     useFindAndModify:false,
     useCreateIndex: true,   
     useUnifiedTopology: true
+    
 });
 
 const db = mongoose.connection;
@@ -67,7 +65,6 @@ passport.serializeUser(User.serializeUser());                               //st
 passport.deserializeUser(User.deserializeUser());                         //how do you get a user out of session
 
 app.use((req, res, next) => {
-    //console.log(req.session);
     res.locals.currentUser = req.user;
     res.locals.success = req.flash('success');
     res.locals.error = req.flash('error');
@@ -96,4 +93,4 @@ app.use((err, req, res, next) => {
 
 app.listen(3000, () => {
    console.log('Serving on port 3000');
-}) 
+})

@@ -7,7 +7,6 @@ app.use(morgan('dev'));
 
 app.use((req, res, next) => {
     req.requestTime = Date.now();
-    console.log(req.method, req.path);
     next();
 })
 app.use('/dogs', (req, res, next) => {

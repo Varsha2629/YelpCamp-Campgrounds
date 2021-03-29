@@ -15,19 +15,17 @@ module.exports.renderNewForm = (req, res) => {
     res.render('campgrounds/new');
 }
 
-module.exports.createCampground = async (req,res, next) => {
-    // if(!req.body.campground) throw new ExpressError('Invalid Campground Data', 400);
+module.exports.createCampground = async (req, res, next) => {
     const geoData = await geocoder.forwardGeocode({
         query: req.body.campground.location,
-        limit:1
+        limit: 1
     }).send()
-    
         const campground = new Campground(req.body.campground);
         campground.geometry = geoData.body.features[0].geometry;
         campground.images = req.files.map(f => ({ url: f.path, filename: f.filename }))
         campground.author = req.user._id;
         await campground.save();
-        console.log(campground);
+        //console.log(campground);
         req.flash('success', 'Successfully made a new campground!');
         res.redirect(`/campgrounds/${campground._id}`);
        
@@ -40,7 +38,6 @@ module.exports.showCampground = async(req, res) => {
             path: 'author'
         }
     }).populate('author');
-// console.log(campground);
    if(!campground) {
        req.flash('error', 'Cannot find that campground!!');
        return res.redirect('/campgrounds');
