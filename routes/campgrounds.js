@@ -8,13 +8,29 @@ const { storage } = require('../cloudinary');
 const upload = multer({ storage });
 
 const Campground = require('../models/campground'); 
+const { serializeUser } = require('passport');
+const { campgroundSchema } = require('../schemas');
 
-router.route('/')
-    .get(catchAsync(campgrounds.index))
 
-     // .post(isLoggedIn, validateCampground, catchAsync(campgrounds.createCampground));
-    .post(upload.array('image'), validateCampground, catchAsync(campgrounds.createCampground));
-    
+ router.get('/', async (req, res) => {
+    // console.log()
+   let campgrounds = await Campground.find({}).populate('text');
+    if(req.query.search){
+       console.log(req.query.search)       
+        campgrounds = campgrounds.filter(camp => camp.title.includes(req.query.search));
+        res.render('campgrounds/index', {campgrounds}); 
+    } else {
+   
+     res.render('campgrounds/index', {campgrounds});          
+    }
+
+ });
+
+ router.route('/')  
+//     .get(catchAsync(campgrounds.index))     
+ 
+  .post(upload.array('image'), validateCampground, catchAsync(campgrounds.createCampground));
+
 router.get('/new', isLoggedIn, campgrounds.renderNewForm)
 
 router.route('/:id')

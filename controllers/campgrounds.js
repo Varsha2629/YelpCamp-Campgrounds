@@ -7,8 +7,8 @@ const { cloudinary } = require("../cloudinary");
 module.exports.index = async (req, res) => {
     const campgrounds = await Campground.find({}).populate('popupText');
     //console.log(campgrounds)
-    res.render('campgrounds/index', {campgrounds, qs: req.query});
-//    console.log(qs.req.query);
+    res.render('campgrounds/index', {campgrounds});
+
 }
 
 module.exports.renderNewForm = (req, res) => {

@@ -1,16 +1,22 @@
 <% layout('layouts/boilerplate')%>
 
 <!-- Search Campgrounds -->
-<input type="text" id="searchBar" class="searchBar" placeholder="Search" value="<%= qs.name %>">
+<div class="search-container ">
+<form action="/campgrounds" method="GET">
+  <!-- onkeyup="searchFun()" -->
+     <input type="text" id="searchBar" name="search" class="search-input-field" placeholder="Search">
+     <button type="submit" value="" class="btn btn-light"><li class="fa fa-search"></li></button>
+</form>
 
-<ul id="campgroundsList"></ul>
+</div>  
 
 <div id="cluster-map"></div>
 <div class="container">
     <h1>All Campgrounds</h1>    
             <% for (let campground of campgrounds) { %>
-              <div class="card mb-3">
-                <div class="row">
+             
+                <div class="card md-3">
+                  <div class="row">
                     <div class="col-md-4">
                       <%if( campground.images.length)  { %>
                         <img class="img-fluid" alt="" src="<%= campground.images[0].url%>">
@@ -31,10 +37,12 @@
                         </div>
                     </div>
                 </div>
+
+             
               </div>
             <% } %>
 </div>
-        <nav aria-label="Page navigation example">
+        <!-- <nav aria-label="Page navigation example">
             <ul class="pagination justify-content-end">
               <li class="page-item disabled">
                 <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
@@ -46,7 +54,7 @@
                 <a class="page-link" href="#">Next</a>
               </li>
             </ul>
-          </nav>
+          </nav> -->
 
           <script>
             const mapToken = '<%-process.env.MAPBOX_TOKEN%>';
