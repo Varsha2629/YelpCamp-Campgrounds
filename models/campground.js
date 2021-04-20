@@ -36,7 +36,7 @@ const CampgroundSchema = new Schema({
     },
     reviews: [
         {
-            type: Schema.Types.ObjectId,
+            type: Schema.Types.ObjectId, 
             ref: 'Review'
         }
     ]
@@ -52,6 +52,7 @@ CampgroundSchema.virtual('properties.popUpMarkup').get(function () {
 CampgroundSchema.post('findOneAndDelete', async function (doc) {
   if(doc) {
         await Review.deleteMany({
+
             _id:{
                 $in: doc.reviews
             }

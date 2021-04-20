@@ -1,6 +1,6 @@
 const BaseJoi = require('joi');
 const sanitizeHtml = require('sanitize-html');
-const { validateCampground } = require('./middleware');
+// const { validateCampground } = require('./middleware');
 
 const extension = (joi) => ({
     type: 'string',

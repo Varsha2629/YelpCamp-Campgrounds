@@ -50,6 +50,6 @@ await Campground.deleteMany({});
    }
 }
 
-seedDB().then(() => {
-    mongoose.connection.close();
-});
+// seedDB().then(() => {
+//     mongoose.connection.close();
+// });

@@ -8,19 +8,31 @@ const { storage } = require('../cloudinary');
 const upload = multer({ storage });
 
 const Campground = require('../models/campground'); 
-const { serializeUser } = require('passport');
-const { campgroundSchema } = require('../schemas');
+const { text } = require('express');
+// const { serializeUser } = require('passport');
+// const { campgroundSchema } = require('../schemas');
+
+
+function escapeRegex(text) {
+  return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+};
 
 
  router.get('/', async (req, res) => {
     // console.log()
-   let campgrounds = await Campground.find({}).populate('text');
+  
+    
     if(req.query.search){
-       console.log(req.query.search)       
-        campgrounds = campgrounds.filter(camp => camp.title.includes(req.query.search));
+    
+      const regex = new RegExp(escapeRegex(req.query.search),'gi');
+      let campgrounds = await Campground.find({"title": regex }).populate('text');
+      
+       console.log(req.query.search)     
+        
+      //  campgrounds = campgrounds.filter(camp => camp.title.includes(req.query.search));
         res.render('campgrounds/index', {campgrounds}); 
     } else {
-   
+      let campgrounds = await Campground.find({}).populate('text');
      res.render('campgrounds/index', {campgrounds});          
     }
 

@@ -1,13 +1,13 @@
 <% layout('layouts/boilerplate')%>
 
 <!-- Search Campgrounds -->
-<div class="search-container ">
-<form action="/campgrounds" method="GET">
-  <!-- onkeyup="searchFun()" -->
-     <input type="text" id="searchBar" name="search" class="search-input-field" placeholder="Search">
-     <button type="submit" value="" class="btn btn-light"><li class="fa fa-search"></li></button>
-</form>
-
+<div class="search">
+  <form action="/campgrounds" method="GET">
+    <!-- onkeyup="searchFun()" -->
+         <input type="search" id="searchBar" name="search" class="form-control mr-sm-2" placeholder="Search Campgrounds" required>
+       
+        
+  </form>
 </div>  
 
 <div id="cluster-map"></div>
@@ -15,31 +15,40 @@
     <h1>All Campgrounds</h1>    
             <% for (let campground of campgrounds) { %>
              
-                <div class="card md-3">
-                  <div class="row">
-                    <div class="col-md-4">
+              
+              <div class="row">
+                    <!-- <div class="col-md-4">
                       <%if( campground.images.length)  { %>
                         <img class="img-fluid" alt="" src="<%= campground.images[0].url%>">
                         <%} else {%>
                           <img class="img-fluid" src="https://res.cloudinary.com/yelpcamp-images/image/upload/v1616791917/YelpCamp/z7sbgtuh35byqchrnupd.jpg" alt="">
                           <% } %>
+                    </div> -->
+                  
+                        <div class="col-lg-4">
+                          <%if( campground.images.length)  { %>
+                            <img class="img-fluid" alt="" src="<%= campground.images[0].url%>">
+                            <%} else {%>
+                              <img class="img-fluid" src="https://res.cloudinary.com/yelpcamp-images/image/upload/v1616791917/YelpCamp/z7sbgtuh35byqchrnupd.jpg" alt="">
+                              <% } %>
+                            <div class="card-body">
+                                <h5 class="card-title"><%= campground.title%></h5>
+                                
+                                <p class="card-text"><%= campground.description%></p>    
+                                <p class="card-text">
+                                    <small class="text-muted"><%= campground.location%></small>
+                                </p> 
+                                <a class="btn btn-primary" href="/campgrounds/<%=campground.id%>">View <%=campground.title%></a>                 
+                                
+                            </div>
                     </div>
-                    <div class="col-md-8">
-                        <div class="card-body">
-                            <h5 class="card-title"><%= campground.title%></h5>
-                            
-                            <p class="card-text"><%= campground.description%></p>    
-                            <p class="card-text">
-                                <small class="text-muted"><%= campground.location%></small>
-                            </p> 
-                            <a class="btn btn-primary" href="/campgrounds/<%=campground.id%>">View <%=campground.title%></a>                 
-                            
-                        </div>
-                    </div>
-                </div>
+                  
+          </div>
+           
+        
+</div>
 
-             
-              </div>
+    
             <% } %>
 </div>
         <!-- <nav aria-label="Page navigation example">
