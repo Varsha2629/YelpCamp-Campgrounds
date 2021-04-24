@@ -1,14 +1,17 @@
 #cluster-map {
     width: 100%;
-    height: 500px;
+    height: 350px;
 }
 
 #map {
     width: 100%;
     height: 300px;
 }
+button.btn-close{
+  float: right;
+}
 .search{
-     margin-bottom: 10px;
+     margin-bottom: 20px;
 }
 
 .search input[type=search] {
@@ -19,6 +22,7 @@
     border-top-left-radius: 8em;
     border-bottom-right-radius: 8em;
     font-size: 16px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     background-color: white;
     background-image: url("https://res.cloudinary.com/yelpcamp-images/image/upload/v1618548995/S_vylnuj.png");
     background-position-x: right;
@@ -28,6 +32,49 @@
     padding: 12px 30px 12px 30px;
   }
   
-  input[type=search]:focus {
+input[type=search]:focus {
     width: 100%;
+  }
+
+button.carousel-control-prev {
+    width: 40px;
+}
+button.carousel-control-next {
+    width: 40px;
+}
+span.carousel-control-prev-icon {
+  background-color: black;
+  height: 24px;
+}
+span.carousel-control-next-icon {
+  background-color: black;
+  height: 24px;
+}
+
+
+/* card */
+
+.col-md-4 {
+   width: 30%;
+   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+   padding: 10px;
+   text-align: center;
+   background-color: #f1f1f1;
+   margin: 10px;
+}
+
+.col-md-4 .img-fluid {
+  width: 100%;
+  height: 50%;
+}
+.container .row {
+  margin-bottom: 40px;
+}
+.marker {
+  background-image: url('https://res.cloudinary.com/yelpcamp-images/image/upload/v1619132280/YelpCamp/mapbox_icon_138401_r8ang0.png');
+  background-size: cover;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
   }
