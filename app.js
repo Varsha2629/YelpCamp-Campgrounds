@@ -53,7 +53,8 @@ app.use(mongoSanitize({
     replaceWith: '_' 
 }))
 
-const secret = process.env.SECRET || 'thisshouldbeabettersecret!';   //this is for development Backup
+const secret = process.env.SECRET;
+//|| 'thisshouldbeabettersecret!';   //this is for development Backup
 const store = new MongoDBStore({
     url: dbUrl,
     secret,
@@ -123,9 +124,6 @@ app.use(
         },
     })
 );
-
-
-
 app.use(passport.initialize());
 app.use(passport.session());
 passport.use(new LocalStrategy(User.authenticate()));
@@ -160,6 +158,7 @@ app.use((err, req, res, next) => {
      //res.send('Oh boy, something went wrong!!')
 })
 
-app.listen(3000, () => {
-   console.log('Serving on port 3000');
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+   console.log(`Serving on port ${port}`);
 })
