@@ -17,9 +17,7 @@ function escapeRegex(text) {
 };
 
  router.get('/', async (req, res) => {
-    // console.log()
-  
-    
+       
     if(req.query.search){
     
       const regex = new RegExp(escapeRegex(req.query.search),'gi');  
@@ -36,7 +34,6 @@ function escapeRegex(text) {
 
  });
 
-  
 
  router.route('/')  
 //     .get(catchAsync(campgrounds.index))     
