@@ -12,11 +12,9 @@ const { text } = require('express');
 // const { serializeUser } = require('passport');
 // const { campgroundSchema } = require('../schemas');
 
-
 function escapeRegex(text) {
   return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
 };
-
 
  router.get('/', async (req, res) => {
     // console.log()
@@ -24,7 +22,7 @@ function escapeRegex(text) {
     
     if(req.query.search){
     
-      const regex = new RegExp(escapeRegex(req.query.search),'gi');
+      const regex = new RegExp(escapeRegex(req.query.search),'gi');  
       let campgrounds = await Campground.find({"title": regex }).populate('text');
       
        console.log(req.query.search)     
@@ -37,6 +35,8 @@ function escapeRegex(text) {
     }
 
  });
+
+  
 
  router.route('/')  
 //     .get(catchAsync(campgrounds.index))     
