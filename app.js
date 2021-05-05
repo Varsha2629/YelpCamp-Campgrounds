@@ -26,6 +26,7 @@ const { contentSecurityPolicy } = require('helmet');
 const MongoDBStore = require('connect-mongo')(session);
 
 const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/yelp-camp';
+
 mongoose.connect(dbUrl, {
     useNewUrlParser: true,
     useFindAndModify:false,
@@ -53,8 +54,7 @@ app.use(mongoSanitize({
     replaceWith: '_' 
 }))
 
-const secret = process.env.SECRET;
-//|| 'thisshouldbeabettersecret!';   //this is for development Backup
+const secret = process.env.SECRET || 'thisshouldbeabettersecret!';   //this is for development Backup
 const store = new MongoDBStore({
     url: dbUrl,
     secret,
@@ -67,7 +67,7 @@ store.on("error", function (e) {
 const sessionConfig = {
     store,
     name: 'session',
-    secret: 'thisshouldbeabettersecret!!',
+    secret,
     resave: false,
     saveUninitialized: true,
     cookie: {                               //send back cookies
@@ -154,11 +154,11 @@ app.all('*', (req, res, next) => {
 app.use((err, req, res, next) => {
     const { statusCode = 500 } = err;
     if (!err.message) err.message = 'Oh No, Something Went Wrong!!'
-     res.status(statusCode).render('error', { err });
+     res.status(statusCode).render('error', { err })
      //res.send('Oh boy, something went wrong!!')
 })
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
-   console.log(`Serving on port ${port}`);
-})
+     console.log(`Serving on port ${port}`)
+    });
