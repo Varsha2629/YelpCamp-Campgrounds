@@ -12,7 +12,6 @@ const { text } = require('express');
 // const { serializeUser } = require('passport');
 // const { campgroundSchema } = require('../schemas');
 
-
 function escapeRegex(text) {
   return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
 };
