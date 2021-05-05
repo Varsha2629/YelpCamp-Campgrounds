@@ -109,9 +109,9 @@
   .starability-basic > label {
     position: relative;
     display: inline-block;  
-    width: 30px;
+    width: 17%;
     height: 30px;
-    float:left;
+    /* float: left; */
     font-size: 0.1em;
     color: transparent;
     cursor: pointer;    

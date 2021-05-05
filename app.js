@@ -25,8 +25,7 @@ const { contentSecurityPolicy } = require('helmet');
 
 const MongoDBStore = require('connect-mongo')(session);
 
-const dbUrl = process.env.DB_URL;
-// || 'mongodb://localhost:27017/yelp-camp';
+const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/yelp-camp';
 mongoose.connect(dbUrl, {
     useNewUrlParser: true,
     useFindAndModify:false,
@@ -54,7 +53,8 @@ app.use(mongoSanitize({
     replaceWith: '_' 
 }))
 
-const secret = process.env.SECRET || 'thisshouldbeabettersecret!';
+const secret = process.env.SECRET;
+//|| 'thisshouldbeabettersecret!';   //this is for development Backup
 const store = new MongoDBStore({
     url: dbUrl,
     secret,
@@ -124,9 +124,6 @@ app.use(
         },
     })
 );
-
-
-
 app.use(passport.initialize());
 app.use(passport.session());
 passport.use(new LocalStrategy(User.authenticate()));
@@ -163,5 +160,5 @@ app.use((err, req, res, next) => {
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
-    console.log(`Serving on port ${port}`)
+   console.log(`Serving on port ${port}`);
 })
