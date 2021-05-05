@@ -33,3 +33,9 @@ body {
     color: #333;
     text-shadow: none;
 }
+
+@media (min-width: 992px){
+.navbar{
+    margin: 20px;
+}
+}
