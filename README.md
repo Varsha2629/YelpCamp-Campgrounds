@@ -1,2 +1,2 @@
-# YelpCamp-Campgrounds
-YelpCamp: Campgrounds CRUD operation
+# My Travel Explorer
+MyTravelExplorer: CRUD operation
