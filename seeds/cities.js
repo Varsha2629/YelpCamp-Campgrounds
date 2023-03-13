@@ -426,7 +426,6 @@ module.exports = [
         },
         {
             city: "Wichita",
-        ,
             latitude: 37.688889,
             longitude: -97.336111,
             population: "386552",
